@@ -1,0 +1,112 @@
+body {
+    font-family: Ubuntu, sans-serif;
+    margin: 0;
+    height: 100vh;
+}
+
+h1 {
+    margin-bottom:0;
+}
+
+main {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+header {
+    width:100%;
+    height:10vh;
+    min-height: 6rem;
+    display:flex;
+    position: sticky;
+    top: 0px;
+    background-color: #666d6d;
+}
+
+#company {
+    display:inline;
+    margin-left: 1rem;
+    font-size: 3rem;
+    font-family: Pacifico, cursive;
+    flex: 1 8rem;
+}
+
+#signup {
+    text-align: right;
+    display:inline;
+    margin: 1.5rem;
+    flex: 1 5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#description {
+    margin-top: 0.4rem;
+    margin-bottom: 2rem;
+}
+
+#card {
+    background-color: #a8adafe8;
+    padding: 40px;
+    border-radius: 5px;
+    color: #0b090a;
+    align-content: center;
+    text-align: center;
+    padding-bottom: 0.6rem;
+    width: 40%;
+    max-width: 250px;
+    min-width: 200px;
+}
+
+#fpsw {
+    font-size: 0.6rem;
+}
+
+input[type="email"], input[type="password"] {
+    background-color: rgba(168, 173, 175, 0);
+    padding: 0.4rem 0.1rem 0.4rem 0.1rem;
+    border: none;
+    border-bottom: 2px solid lightgrey;
+    margin-bottom: 30px;
+    width: 100%;
+    transition: border 1s;
+}
+
+input[type="email"]:focus , input[type="password"]:focus  {
+    border-bottom: 2px solid black;
+    outline:none;
+}
+
+.otheropt {
+    display:flex;
+    flex-direction: column;
+    width:100%;
+}
+
+/*Styling Buttons*/
+
+button {
+    color:white;
+    margin: 0.5rem 0;
+    border-radius: 3px;
+    padding: 0.2em 0;
+}
+
+#login, #logout, #signUp {
+    background-color: black;
+    border: 1px solid black;
+    margin: 20px 0px;
+    padding: 0.3rem 0.9rem;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+button:hover {
+    margin: 0.5rem 0;
+    box-shadow: 0px 2px 5px 1px #808080e8;
+}
