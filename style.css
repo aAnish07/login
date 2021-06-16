@@ -63,6 +63,9 @@ header {
 
 #fpsw {
     font-size: 0.6rem;
+    color: rgb(39, 39, 209);
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 input[type="email"], input[type="password"] {
@@ -100,6 +103,7 @@ button {
     border: 1px solid black;
     margin: 20px 0px;
     padding: 0.3rem 0.9rem;
+    cursor: pointer;
 }
 
 button:active {
