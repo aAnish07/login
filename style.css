@@ -53,6 +53,9 @@ header {
     padding: 40px;
     border-radius: 5px;
     color: #0b090a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-content: center;
     text-align: center;
     padding-bottom: 0.6rem;
@@ -93,12 +96,8 @@ input[type="email"]:focus , input[type="password"]:focus  {
 
 button {
     color:white;
-    margin: 0.5rem 0;
     border-radius: 3px;
     padding: 0.2em 0;
-}
-
-#login, #logout, #signUp {
     background-color: black;
     border: 1px solid black;
     margin: 20px 0px;
@@ -111,6 +110,34 @@ button:active {
 }
 
 button:hover {
-    margin: 0.5rem 0;
+    margin: 20px 0;
     box-shadow: 0px 2px 5px 1px #808080e8;
+}
+
+#google {
+    margin-top: 0px;
+    background-color: white;
+    border: none;
+    color: black;
+    border-radius: 0px;
+    padding: 0px;
+    padding-right: 0.3rem;
+    border-radius: 3px;
+}
+
+#gImage {
+    height: 20px;
+    margin-right: 7px;
+    vertical-align: middle;
+    background-color: rgb(0, 132, 255);
+    padding: 4px;
+    padding-right: 5px;
+    border-radius: 3px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+button > p {
+    display: inline;
+    vertical-align: middle;
 }
