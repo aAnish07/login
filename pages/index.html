@@ -12,19 +12,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <title>Anico | Dashboard</title>
+    <title>Anico | Login</title>
 </head>
 
 <body>
 
     <header>
         <section id="company">Anico</section>
+        <section id="signup">Don't have an account?<br><a href="signup.html">Sign Up</a></section>
     </header>
 
     <main>
-        <div style="background-color: #a8adafe8; padding: 30px; border-radius: 7px;">
-            <p>Welcome to Anico Dashboard!</p>
-            <button id="logout">Logout</button>
+        <div id="card">
+
+            <h1>Log In</h1>
+            <section id="description">Enter your details below</section>
+            <form id="form">
+                <div>
+                    <input type="email" autocomplete="off" placeholder="Enter email" id="email" required>
+                </div>
+
+                <div>
+                    <input type="password" placeholder="Enter password" required id="psw">
+                </div>
+
+                <a id="fpsw">Forgot password?</a>
+
+                <div>
+                    <button id="login">Login</button>
+                </div>
+            </form>
+            <div>
+                <button id="google"><img src="google.svg" id="gImage">
+                    <p>Sign In With Google</p>
+                </button>
+            </div>
+
         </div>
     </main>
 
@@ -33,26 +56,9 @@
 
     <!-- TODO: Add SDKs for Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-auth.js"></script>
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyCPKru3mfkGPmPgHyQm-TARLW76QsO1CRw",
-            authDomain: "login-468fd.firebaseapp.com",
-            projectId: "login-468fd",
-            storageBucket: "login-468fd.appspot.com",
-            messagingSenderId: "401960497322",
-            appId: "1:401960497322:web:dc1a1d029d394945f820d3"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-    </script>
-    <script>
-        const btnLogout = document.getElementById("logout");
+    <script src="scripts/app.js"></script>
+    <script src="scripts/googlesup.js"></script>
 
-        btnLogout.addEventListener("click", () => {
-            window.location.href = "index.html";
-        })
-    </script>
 </body>
 
 </html>
