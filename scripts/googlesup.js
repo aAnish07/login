@@ -7,7 +7,7 @@ const btnSin = document.getElementById("google");
 //add click event
 btnSin.addEventListener("click", () => {
     firebase.auth()
-        .signInWithPopup(provider)
+        .signInWithPopup(new firebase.auth.GoogleAuthProvider())
         .then((result) => {
             /** @type {firebase.auth.OAuthCredential} */
             var credential = result.credential;
