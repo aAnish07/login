@@ -50,7 +50,7 @@ header {
 
 #card {
     background-color: #a8adafe8;
-    padding: 40px;
+    padding: 45px;
     border-radius: 5px;
     color: #0b090a;
     display: flex;
@@ -71,7 +71,7 @@ header {
     cursor: pointer;
 }
 
-input[type="email"], input[type="password"] {
+input {
     background-color: rgba(168, 173, 175, 0);
     padding: 0.4rem 0.1rem 0.4rem 0.1rem;
     border: none;
@@ -81,9 +81,17 @@ input[type="email"], input[type="password"] {
     transition: border 1s;
 }
 
-input[type="email"]:focus , input[type="password"]:focus  {
+input:focus  {
     border-bottom: 2px solid black;
     outline:none;
+}
+
+label {
+    font-size: 0.8rem;
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 0.5rem;
 }
 
 .otheropt {

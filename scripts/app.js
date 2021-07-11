@@ -25,18 +25,18 @@ document.getElementById("form").addEventListener("submit", (event) => {
     event.preventDefault();
 })
 
-//handling signin activity
+//handling login/signin activity
 btnLogin.addEventListener("click", () => {
     firebase.auth().signInWithEmailAndPassword(email, psw)
         .then((userCredential) => {
             var user = userCredential.user;
-            window.location.href = "loggedin.html";
+            window.location.href = "pages/loggedin.html";
         })
         .catch((error) => {
             console.error(error.code);
             if (error.code === "auth/user-not-found") {
                 window.alert("User not found, click 'OK' to redirect to the Sign-Up page");
-                window.location.href = "signup.html";
+                window.location.href = "pages/signup.html";
             }
             else if (error.code === "auth/wrong-password") {
                 window.alert("Please enter the correct password");
