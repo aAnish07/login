@@ -1,14 +1,3 @@
-
-// Your web app's Firebase configuration
-var firebaseConfig = {
-    apiKey: "AIzaSyCPKru3mfkGPmPgHyQm-TARLW76QsO1CRw",
-    authDomain: "login-468fd.firebaseapp.com",
-    projectId: "login-468fd",
-    storageBucket: "login-468fd.appspot.com",
-    messagingSenderId: "401960497322",
-    appId: "1:401960497322:web:dc1a1d029d394945f820d3"
-};
-
 //creating instance of google provider object
 let provider = new firebase.auth.GoogleAuthProvider();
 
@@ -17,5 +6,31 @@ const btnSin = document.getElementById("google");
 
 //add click event
 btnSin.addEventListener("click", () => {
-    firebase.auth().signInWithRedirect(provider)
+    firebase.auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+            /** @type {firebase.auth.OAuthCredential} */
+            var credential = result.credential;
+
+            firebase.auth().onAuthStateChanged((user) => {
+                if (user) {
+                    window.location.href = "pages/loggedin.html";
+                }
+            });
+
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            var token = credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            // ...
+        }).catch((error) => {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+        });
 });

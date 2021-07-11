@@ -1,13 +1,3 @@
-
-// Your web app's Firebase configuration
-var firebaseConfig = {
-    apiKey: "AIzaSyCPKru3mfkGPmPgHyQm-TARLW76QsO1CRw",
-    authDomain: "login-468fd.firebaseapp.com",
-    projectId: "login-468fd",
-    storageBucket: "login-468fd.appspot.com",
-    messagingSenderId: "401960497322",
-    appId: "1:401960497322:web:dc1a1d029d394945f820d3"
-};
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
@@ -30,10 +20,12 @@ txtPsw.oninput = () => {
     psw = txtPsw.value.trim();
 }
 
+//prevent default behaviour causing form to reset
 document.getElementById("form").addEventListener("submit", (event) => {
     event.preventDefault();
 })
 
+//handling signin activity
 btnLogin.addEventListener("click", () => {
     firebase.auth().signInWithEmailAndPassword(email, psw)
         .then((userCredential) => {
@@ -52,12 +44,11 @@ btnLogin.addEventListener("click", () => {
         });
 });
 
+//handling forgot password activity
 aFpsw.addEventListener("click", () => {
     firebase.auth().sendPasswordResetEmail(email)
         .then(() => {
             window.alert("Password Reset email was sent");
-            // Password reset email sent!
-            // ..
         })
         .catch((error) => {
             console.log(error.code);
@@ -65,6 +56,5 @@ aFpsw.addEventListener("click", () => {
                 window.alert(`${error.message}. Click 'OK' to create a new account with ${email}`);
                 window.location.href = "signup.html";
             }
-            // ..
         });
 })
