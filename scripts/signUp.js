@@ -37,21 +37,24 @@ document.getElementById("form").addEventListener("submit", (event) => {
 
 //setting up database object and root reference.
 const database = firebase.database();
-// const rootRef = database.ref('users');
 
 //handling the user create event
 btnSignUp.addEventListener("click", () => {
     firebase.auth().createUserWithEmailAndPassword(email, psw)
         .then((userCredential) => {
             // Signed Up
-            database.ref('/users/' + mob).set({
-                userEmail: email,
-                mobileNumber: mob
-            }).then(() => {
-                window.location.href = "loggedin.html";
-            })
+            if (userCredential) {
+                database.ref('users/' + userCredential.uid).set({
+                    userEmail: email,
+                    mobileNumber: mob,
+                    verifiedEmail: false
+                }).then(() => {
+                    window.location.href = "loggedin.html";
+                })
+            }
         })
         .catch((error) => {
+            //handle errors in user creation here
             console.error(error.code, error.message);
         });
 })

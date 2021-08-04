@@ -4,6 +4,9 @@ let provider = new firebase.auth.GoogleAuthProvider();
 //getting element(s)
 const btnSin = document.getElementById("google");
 
+//creating an object of the database
+const databaseRef = firebase.database();
+
 //check for mobile device type and execute relevant code
 if (!(navigator.userAgent.match(/Android/i)
     || navigator.userAgent.match(/webOS/i)
@@ -18,57 +21,39 @@ if (!(navigator.userAgent.match(/Android/i)
         firebase.auth()
             .signInWithPopup(new firebase.auth.GoogleAuthProvider())
             .then((result) => {
-                /** @type {firebase.auth.OAuthCredential} */
-                var credential = result.credential;
-
                 firebase.auth().onAuthStateChanged((user) => {
                     if (user) {
-                        window.location.href = "pages/loggedin.html";
+                        writeData(user);
                     }
                 });
-
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                var token = credential.accessToken;
-                // The signed-in user info.
-                var user = result.user;
-                // ...
             }).catch((error) => {
-                // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // The email of the user's account used.
-                var email = error.email;
-                // The firebase.auth.AuthCredential type that was used.
-                var credential = error.credential;
-                // ...
+                // Handle signIn Errors here.
             });
     });
 } else {
     btnSin.addEventListener("click", () => {
         firebase.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider());
         firebase.auth().getRedirectResult().then((result) => {
-            var credential = result.credential;
-
             firebase.auth().onAuthStateChanged((user) => {
                 if (user) {
-                    window.location.href = "pages/loggedin.html";
+                    writeData(user);
                 }
             });
-
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var token = credential.accessToken;
-            // The signed-in user info.
-            var user = result.user;
-            // ...
         }).catch((error) => {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            // ...
+            // Handle signIn Errors here.       
         });
     });
+}
+
+function writeData(user) {
+    databaseRef.ref("users/" + user.uid).set({
+        userName: user.displayName,
+        userEmail: user.email,
+        userPhone: user.phoneNumber,
+        userPhoto: user.photoURL
+    }).then(() => {
+        window.location.href = "pages/loggedin.html";
+    }).catch((error) => {
+        //databasing errors here
+    })
 }
