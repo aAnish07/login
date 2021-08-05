@@ -30,6 +30,7 @@ btnLogin.addEventListener("click", () => {
     firebase.auth().signInWithEmailAndPassword(email, psw)
         .then((userCredential) => {
             var user = userCredential.user;
+            sessionStorage.setItem("uid", user.uid);
             window.location.href = "pages/loggedin.html";
         })
         .catch((error) => {

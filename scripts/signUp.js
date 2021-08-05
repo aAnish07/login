@@ -54,6 +54,7 @@ btnSignUp.addEventListener("click", () => {
                     mobileNumber: mob,
                     verifiedEmail: false
                 }).then(() => {
+                    sessionStorage.setItem("uid", userCredential.user.uid);
                     window.location.href = "loggedin.html";
                 })
             }

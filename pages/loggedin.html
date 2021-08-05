@@ -23,6 +23,7 @@
 
     <main>
         <div style="background-color: #a8adafe8; padding: 30px; border-radius: 7px;">
+            <p id="wlcMsg"></p>
             <p>Welcome to Anico Dashboard!</p>
             <button id="logout">Logout</button>
         </div>
@@ -33,6 +34,8 @@
 
     <!-- TODO: Add SDKs for Firebase products that you want to use -->
     <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-database.js"></script>
+
     <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {
@@ -46,10 +49,18 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
 
-        //using logout option
+        window.onload = () => {
+            let uid = sessionStorage.getItem("uid");
+            firebase.database().ref('users/' + uid + '/userName').on('value', (snapshot) => {
+                const displayName = snapshot.val();
+                document.getElementById("wlcMsg").innerText = `Hi ${displayName}`
+            })
+        }
+
+        // gets logout button
         const btnLogout = document.getElementById("logout");
 
-        //create google instance
+        // handles user logout
         btnLogout.addEventListener("click", () => {
             firebase.auth().signOut().then(() => {
                 window.location.href = "../index.html";

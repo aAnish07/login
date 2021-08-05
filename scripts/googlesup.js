@@ -4,7 +4,7 @@ let provider = new firebase.auth.GoogleAuthProvider();
 //getting element(s)
 const btnSin = document.getElementById("google");
 
-//creating an object of the database
+//creating a reference of the database
 const databaseRef = firebase.database();
 
 //check for mobile device type and execute relevant code
@@ -53,6 +53,7 @@ function writeData(user) {
         userPhoto: user.photoURL,
         verifiedEmail: true
     }).then(() => {
+        sessionStorage.setItem("uid", user.uid);
         window.location.href = "pages/loggedin.html";
     }).catch((error) => {
         //databasing errors here
