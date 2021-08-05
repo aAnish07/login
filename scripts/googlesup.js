@@ -50,7 +50,8 @@ function writeData(user) {
         userName: user.displayName,
         userEmail: user.email,
         userPhone: user.phoneNumber,
-        userPhoto: user.photoURL
+        userPhoto: user.photoURL,
+        verifiedEmail: true
     }).then(() => {
         window.location.href = "pages/loggedin.html";
     }).catch((error) => {

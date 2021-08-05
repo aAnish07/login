@@ -14,10 +14,11 @@ firebase.initializeApp(firebaseConfig);
 const txtEmail = document.getElementById("email");
 const txtPsw = document.getElementById("psw");
 const txtMob = document.getElementById("mobNum");
+const txtName = document.getElementById("name");
 const btnSignUp = document.getElementById("signUp");
 
 //text-field variables
-let email, psw, mob;
+let email, psw, mob, displayName;
 
 //update text fields on input
 txtEmail.oninput = () => {
@@ -28,6 +29,9 @@ txtPsw.oninput = () => {
 }
 txtMob.oninput = () => {
     mob = txtMob.value.trim();
+}
+txtName.oninput = () => {
+    displayName = txtName.value.trim();
 }
 
 //prevent default action causing form to reset on submission
@@ -44,8 +48,9 @@ btnSignUp.addEventListener("click", () => {
         .then((userCredential) => {
             // Signed Up
             if (userCredential) {
-                database.ref('users/' + userCredential.uid).set({
+                database.ref('users/' + userCredential.user.uid).set({
                     userEmail: email,
+                    userName: displayName,
                     mobileNumber: mob,
                     verifiedEmail: false
                 }).then(() => {
